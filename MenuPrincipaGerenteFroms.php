@@ -1,3 +1,12 @@
+<?php 
+session_start();
+if (!$_SESSION['Verificar']) {#si la variable no es verdadera
+  # code...
+  header("location: loginsFrom.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>  

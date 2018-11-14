@@ -1,4 +1,14 @@
 <?php 
+session_start();
+if (!$_SESSION['Verificar']) {#si la variable no es verdadera
+  # code...
+  header("location: loginsFrom.php");
+}
+
+
+?>
+
+<?php 
 	require('conexioncolectivos.php');
 	#$sql= "select TIMESTAMPDIFF(YEAR,fecha_naci,CURDATE()) AS edad, (TIMESTAMPDIFF(YEAR,fecha_naci,CURDATE())*TIMESTAMPDIFF(YEAR,fecha_naci,CURDATE())) as edad2 from empleado order by edad;";
 	#___________________-SUMAS TABLAS- 1 Y 2______________________________#
@@ -73,32 +83,38 @@
 		<link rel="stylesheet" type="text/css" href="style/estiloformulariocontabla.css">
 	</head>
 	<body>
-	<form action="redirecmein.php" method="post">	
-		<div class="divmeinsup" id="headermein">
-			<ul class="navelislt">
-				<li><a href="MenuPrincipaGerenteFroms.php">Inicio</a></li>
-				<li><a href="InsertarForm.php">Insertar</a></li>
-				<li><a href="VerForm.php">Ver</a></li>
-				<li><a href="ModificarForm.php">Editar</a></li>
-				<li><a href="BorrarForm.php">Eliminar</a></li>
-				<li><a href="ConsultaFrom.php">Consultas</a>
-					<ul>
-						<li><a href="Consulta1edad.php">Consulta edad</a></li>
-						<li><a href="Consulta2Estatura.php">Consulta estatura</a></li>
-					</ul>
-				</li>
-				<li><a href="SupervisionForm.php">Supervisor</a></li>
-				<li><a href="">Creditos</a>
-					<ul>
-						<li><a href="">Andres Coba</a></li>
-						<li><a href="">Breiner Zapata</a></li>
-						<li><a href="">Cristian Giraldo</a></li>
-					</ul>
-				</li>				
-			</ul>	
-		</div>
-	</form>
-	</body>
+  <form action="" method="post"> 
+    <div class="divmeinsup" id="headermein">
+      <ul class="navelislt">
+        <li><a href="MenuPrincipaGerenteFroms.php">Inicio</a></li>
+        <li><a href="InsertarForm.php">Insertar</a></li>
+        <li><a href="VerForm.php">Ver</a></li>
+        <li><a href="ModificarForm.php">Editar</a></li>
+        <li><a href="BorrarForm.php">Eliminar</a></li>
+        <li><a href="ConsultaFrom.php">Consultas</a>
+          <ul>
+            <li><a href="Consulta1edad.php">Consulta edad</a></li>
+            <li><a href="Consulta2Estatura.php">Consulta estatura</a></li>
+          </ul>
+        </li>
+        <li><a href="SupervisionForm.php">Supervisor</a></li>        
+        <li><a href="">Creditos</a>
+          <ul>
+            <li><a href="">Andres Coba</a></li>
+            <li><a href="">Breiner Zapata</a></li>
+            <li><a href="">Cristian Giraldo</a></li>
+          </ul>
+          <li><a href="">Sesion</a>
+          <ul>
+            <li><a href=""><?php echo $_SESSION['NomUser']; ?></a></li>
+            <li><a href=""><?php echo $_SESSION['Cargo']; ?></a></li>
+            <li><a href="Logout.php">Cerrar Sesion</a></li>
+          </ul>
+        </li>       
+      </ul> 
+    </div>
+  </form>
+  </body>
 	
 
 	<body>

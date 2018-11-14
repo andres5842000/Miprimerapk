@@ -10,31 +10,27 @@ echo "en beta el boton registrar";
 
 }
 #require("conexioncolectivo.php");
-if(isset($_POST['Login'])){		
-	echo "dev ento al btn<br>";
-	if(!empty($_POST))
-		echo "entro al if empty <br>";
+if(isset($_POST['Login'])){			
+	if(!empty($_POST))		
 	{
 		$userlog = $_POST['Usuario'];
-		$password =$_POST['Contraseña'];
-		$sql = "SELECT * FROM USUARIO WHERE id_user = '$userlog' AND contraseña = '$password'";
+		$password =$_POST['Contrasena'];
+		$sql = "SELECT * FROM USUARIO WHERE id_user = '$userlog' AND contrasena = '$password'";
 		$query = mysqli_query($conn,$sql);
-		echo "Se realiza la consulta";
-		if($query){//aqui esta el error,  no retorna nada
-			echo "entra if query";
-			if(mysqli_num_rows($query)>0){				
-				if($userlog == $password){
-					echo "$userlog = $password ";
-					echo "salto a pagina";
-					header("location: indexprincipalgere.php");
-				}else{
-					echo "ocurrio un error";
-				}
+		if(mysqli_num_rows($query)>0){		
+			$row = mysqli_fetch_assoc($query);
+			session_start();		
+			$_SESSION['NomUser']= $userlog;			
+			$_SESSION['Cargo']= $row['rango'];	
+			$_SESSION['Verificar']= true;		
+			if ( $row['rango'] == 'Gerente2') {
+				header("location: MenuPrincipaGerenteFroms.php");
 			}
+			
+				
 		}	
 	}
 
 }
-
 
 ?>
